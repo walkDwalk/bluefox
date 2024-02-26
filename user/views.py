@@ -42,9 +42,10 @@ def send_activation_email(user, request):
 
     email = EmailMultiAlternatives(subject=email_subject, body=email_body, from_email=settings.EMAIL_HOST_USER,to=[user.email] )
     email.attach_alternative(email_body, "text/html")
+
     EmailThread(email).start()
 
-    
+
 @login_required(login_url='/user/login/')
 def demo(request):
     qs = whatsapp.objects.all()
@@ -287,7 +288,7 @@ def signupView(request):
         else:
             user = User.objects.create_user(username=username, password=password1,fullname=fullname,email=email,phone=phone,country=country,sex=sex,address=address,image=image)
             send_activation_email(user, request)
-            messages.add_message(request, messages.SUCCESS,'Message the admin via live chat to verify your account')
+            messages.add_message(request, messages.SUCCESS,'Check your mail box to verify your account')
             return redirect('userurl:login')
     return render(request, 'acc/signup.html')
 
@@ -298,7 +299,7 @@ def loginView(request):
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
         if user and not user.is_email_verified:
-            messages.add_message(request, messages.ERROR,'Email is not verified, please contact admin via live chat')
+            messages.add_message(request, messages.ERROR,'Email is not verified, please check your indox')
             return render(request, 'acc/login.html',)
         if user is not None:
             login(request, user)
