@@ -33,7 +33,7 @@
                   </div>
                </div>
                <ul class="navbar-nav navbar-nav-hover align-items-lg-center show-mobile-only">
-                  <li class="nav-item"><a aria-current="page" class="nav-link d-flex active" href="{% url 'userurl:demo' %}">Overview <span class="icon icon-xs ms-auto"></span></a></li>
+                  <li class="nav-item"><a aria-current="page" class="nav-link d-flex active" href="{% url 'userurl:dash' %}">Overview <span class="icon icon-xs ms-auto"></span></a></li>
                   <li class="nav-item"><a class="nav-link d-flex" href="{% url 'userurl:copy' %}">Copy Trader <span class="icon icon-xs ms-auto"></span></a></li>
                   <li class="nav-item"><a class="nav-link d-flex" href="{% url 'userurl:market' %}">Market + <span class="icon icon-xs ms-auto"></span></a></li>
                   <li class="nav-item"><a class="nav-link d-flex" href="{% url 'userurl:my_trades' %}">My Trade History <span class="icon icon-xs ms-auto"></span></a></li>
@@ -41,7 +41,7 @@
                      <a data-bs-toggle="dropdown" id="investmentsDropdown" aria-expanded="false" aria-current="page" class="nav-link d-flex active" href="/user/my-plan/">Investments <span class="icon icon-xs ms-auto"><span class="fas fa-chevron-right"></span></span></a>
                      <div class="dropdown-menu dropdown-menu-lg" aria-labelledby="investmentsDropdown" style="padding-left: 20px;">
                         <div class="col-auto px-0">
-                           <div class="list-group list-group-flush"><a class="font-small fw-bold d-flex" href="{% url 'userurl:demo' %}" style="padding-left: 20px; border-left: 2px solid rgb(153, 153, 153);">Overview <span class="icon icon-xs ms-auto"></span></a><a class="font-small fw-bold d-flex mt-2" href="/user/plan/" style="padding-left: 20px; border-left: 2px solid rgb(153, 153, 153);">Packages <span class="icon icon-xs ms-auto"></span></a></div>
+                           <div class="list-group list-group-flush"><a class="font-small fw-bold d-flex" href="{% url 'userurl:dash' %}" style="padding-left: 20px; border-left: 2px solid rgb(153, 153, 153);">Overview <span class="icon icon-xs ms-auto"></span></a><a class="font-small fw-bold d-flex mt-2" href="/user/plan/" style="padding-left: 20px; border-left: 2px solid rgb(153, 153, 153);">Packages <span class="icon icon-xs ms-auto"></span></a></div>
                         </div>
                      </div>
                   </li>
@@ -61,7 +61,7 @@
                  
                </ul>
                <ul class="navbar-nav navbar-nav-hover align-items-lg-center show-not-mobile">
-                  <li class="nav-item"><a aria-current="page" class="nav-link active" href="{% url 'userurl:demo' %}">Dashboard</a></li>
+                  <li class="nav-item"><a aria-current="page" class="nav-link active" href="{% url 'userurl:dash' %}">Dashboard</a></li>
                   <li class="nav-item dropdown">
                      <a id="dashboardDropdown" aria-expanded="false" data-bs-toggle="dropdown" aria-current="page" class="nav-link dropdown-toggle active" href="/user/dashboard">Account <span class="fas fa-angle-down nav-link-arrow ms-1"></span></a>
                      <div class="dropdown-menu dropdown-megamenu-sm px-0 py-2 p-lg-4" aria-labelledby="dashboardDropdown">

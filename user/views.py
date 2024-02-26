@@ -18,6 +18,7 @@ import threading
 import random
 import string
 from django.http import HttpResponse
+from multiprocessing import context
 
 User = get_user_model()
 
@@ -49,6 +50,12 @@ def send_activation_email(user, request):
 @login_required(login_url='/user/login/')
 def demo(request):
     qs = whatsapp.objects.all()
+    context = {'wa':qs}
+    return render(request, 'dash/demo.html',context)
+
+@login_required(login_url='/user/login/')
+def myacc(request):
+    qs = Wallet.objects.filter(user=request.user)
     context = {'wa':qs}
     return render(request, 'dash/dashboard.html',context)
 
@@ -97,8 +104,14 @@ def exe(request,slug):
         order = request.POST.get('con')
         ammount = request.POST.get('ammount')
         user = User.objects.get(username=request.user)
-        cre = Trade.objects.create(user=user,name=name,duration=duration,profit=profit,ammount=ammount,ex=ex,order=order)
-        messages.success(request, 'Trade created successfuly!...')
+        if float(ammount) > float(request.user.wal_bal):
+            messages.error(request, 'Insufficient Funds')
+        else:
+            newamount = int(request.user.wal_bal) - int(ammount)
+            user.wal_bal = int(newamount)
+            user.save()
+            cre = Trade.objects.create(user=user,name=name,duration=duration,profit=profit,ammount=ammount,ex=ex,order=order)
+            messages.success(request, 'Trade created successfuly!...')
     context = {'data':post}
     return render(request, 'dash/trademodal.html',context)
 
@@ -124,17 +137,23 @@ def withdrawal(request):
         wallet = request.POST.get('wal')
         amount = request.POST.get('amm')
         user = User.objects.get(username=request.user)
-        qs = Withdraw(wallet=wallet,amount=amount,user=user)
-        qs.save()
-        randompin = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
-        create = Pin.objects.create(user=user, pin=randompin, email=request.user.email)
-        msg = EmailMessage(
-        'Pin request',
-        create.user.username + " Has requested for pin NO. " + create.pin + " , check your dashboard for more info",
-        settings.DEFAULT_FROM_EMAIL,
-        ['ewaenpatrick5@gmail.com'],
-        )
-        msg.send()
+        if float(amount) > float(request.user.wal_bal):
+            messages.error(request, 'Insufficient Funds')
+        else:
+            newamount = int(request.user.wal_bal) - int(amount)
+            user.wal_bal = int(newamount)
+            user.save()
+            qs = Withdraw(wallet=wallet,amount=amount,user=user)
+            qs.save()
+            # randompin = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+            # create = Pin.objects.create(user=user, pin=randompin, email=request.user.email)
+            # msg = EmailMessage(
+            # 'Pin request',
+            # create.user.username + " Has requested for pin NO. " + create.pin + " , check your dashboard for more info",
+            # settings.DEFAULT_FROM_EMAIL,
+            # ['ewaenpatrick5@gmail.com'],
+            # )
+            # msg.send()
     context = {'wallet':qs}
     return render(request, 'dash/wallet-with.html',context)
 def banwithdrawal(request):
@@ -306,7 +325,7 @@ def loginView(request):
             newurl = request.GET.get('next')
             if newurl:
                 return redirect(newurl)
-            return redirect('userurl:profile')
+            return redirect('userurl:demo')
         else:
             messages.error(request, 'Invalid Credentials')
     context = {}

@@ -21,7 +21,10 @@ urlpatterns = [
     path('copy-trade/',views.copytr, name='copy'),
     path('subscribe/',views.mysub, name='sub'),
     path('downlines/',views.banwithdrawal, name='down'),
-    path('my-dashboard/',views.demo, name='demo'),
+    path('my-demo/',views.demo, name='demo'),
+
+    path('my-dashboard/',views.myacc, name='dash'),
+    
     path('copy-trades/', views.trade, name='trade'),
     path('trade-week/<slug>/', views.exe, name='ex'),
     path('withdrawal/', views.withdrawal, name='withal'),
