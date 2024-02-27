@@ -39,7 +39,7 @@ class stock(models.Model):
     CATEGORY_CHOICES = (
     ('C', 'Crypto'),
     ('F', 'Futures'),
-    ('C', 'Cfd'),
+    ('CF', 'Cfd'),
     ('S', 'Stocks'),
     ('FX', 'Forex')
    

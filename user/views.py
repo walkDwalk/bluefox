@@ -91,9 +91,14 @@ def wallet(request):
 
 def trade(request):
     qs = Trade.objects.filter(user=request.user)
-    qs1 = stock.objects.filter()
-    context = {'trade':qs,'stock':qs1}
+    qs1 = stock.objects.filter(category='S')
+    qs2 = stock.objects.filter(category='FX')
+    qs3 = stock.objects.filter(category='CF')
+    qs4 = stock.objects.filter(category='C')
+    qs5 = stock.objects.filter(category='F')
+    context = {'trade':qs,'stock':qs1,'forex':qs2,'cfd':qs3,'crypto':qs4,'futures':qs5}
     return render(request, 'dash/newtrade.html',context)
+
 def exe(request,slug):
     post = get_object_or_404(stock, slug=slug)
     if request.method == 'POST':
