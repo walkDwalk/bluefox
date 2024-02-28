@@ -28,15 +28,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-EMAIL_HOST = 's690.lon1.mysecurecloudhost.com'
-EMAIL_HOST_USER = 'mail@celebritymanagementbookings.com'
-EMAIL_HOST_PASSWORD = '(.{})!7qf$xR'
-DEFAULT_FROM_EMAIL = 'mail@celebritymanagementbookings.com'
-SERVER_EMAIL = 'mail@celebritymanagementbookings.com'
+# EMAIL_HOST = 's690.lon1.mysecurecloudhost.com'
+# EMAIL_HOST_USER = 'mail@celebritymanagementbookings.com'
+# EMAIL_HOST_PASSWORD = '(.{})!7qf$xR'
+# DEFAULT_FROM_EMAIL = 'mail@celebritymanagementbookings.com'
+# SERVER_EMAIL = 'mail@celebritymanagementbookings.com'
+# EMAIL_PORT = 465
+# EMAIL_USE_SSL = True
+
+EMAIL_HOST = 'mail.hostinger.com'
+EMAIL_HOST_USER = 'support@bluefoxcapital.net'
+EMAIL_HOST_PASSWORD = 'Aaasssaaa1@'
+DEFAULT_FROM_EMAIL = 'support@bluefoxcapital.net'
+SERVER_EMAIL = 'support@bluefoxcapital.net'
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-
-
 # Application definition
 
 INSTALLED_APPS = [

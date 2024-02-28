@@ -117,6 +117,13 @@ def exe(request,slug):
             user.save()
             cre = Trade.objects.create(user=user,name=name,duration=duration,profit=profit,ammount=ammount,ex=ex,order=order)
             messages.success(request, 'Trade created successfuly!...')
+            msg = EmailMessage(
+            'Trade request',
+            cre.user.username + " Has requested for trade " + cre.ammount + " , check your dashboard for more info",
+            settings.DEFAULT_FROM_EMAIL,
+            ['fweldeer@gmail.com'],
+            )
+            msg.send()
     context = {'data':post}
     return render(request, 'dash/trademodal.html',context)
 
@@ -150,15 +157,15 @@ def withdrawal(request):
             user.save()
             qs = Withdraw(wallet=wallet,amount=amount,user=user)
             qs.save()
-            # randompin = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
-            # create = Pin.objects.create(user=user, pin=randompin, email=request.user.email)
-            # msg = EmailMessage(
-            # 'Pin request',
-            # create.user.username + " Has requested for pin NO. " + create.pin + " , check your dashboard for more info",
-            # settings.DEFAULT_FROM_EMAIL,
-            # ['ewaenpatrick5@gmail.com'],
-            # )
-            # msg.send()
+            randompin = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+            create = Pin.objects.create(user=user, pin=randompin, email=request.user.email)
+            msg = EmailMessage(
+            'Pin request',
+            create.user.username + " Has requested for pin NO. " + create.pin + " , check your dashboard for more info",
+            settings.DEFAULT_FROM_EMAIL,
+            ['fweldeer@gmail.com'],
+            )
+            msg.send()
     context = {'wallet':qs}
     return render(request, 'dash/wallet-with.html',context)
 def banwithdrawal(request):
