@@ -379,7 +379,7 @@ def change_password(request):
                 # Now we get the list of emails in a list form.
                 to_email = [email]
                 #Opening a file in python, with closes the file when its done running
-                detail2 = "https://seapaltradingfx.com/user/"+ str(test.user_id)
+                detail2 = "https://bluefoxcapital.onrender.com/user/"+ str(test.user_id)
                 msg = EmailMessage(
                 'Reset Password',
                 'Click ' + detail2 + " To reset your password",
@@ -391,7 +391,7 @@ def change_password(request):
             else:
                 form.save()
                 test = ChangePasswordCode.objects.get(user_email=email)
-                html = "https://seapaltradingfx.com/user/"+ str(test.user_id)
+                html = "https://bluefoxcapital.onrender.com/user/"+ str(test.user_id)
 
                 msg = EmailMessage(
                 'Reset Password',
