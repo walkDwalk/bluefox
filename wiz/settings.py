@@ -36,7 +36,7 @@ ALLOWED_HOSTS = ['*']
 # EMAIL_PORT = 465
 # EMAIL_USE_SSL = True
 
-EMAIL_HOST = 'mail.hostinger.com'
+EMAIL_HOST = 'smtp.hostinger.com'
 EMAIL_HOST_USER = 'support@bluefoxcapital.net'
 EMAIL_HOST_PASSWORD = 'Aaasssaaa1@'
 DEFAULT_FROM_EMAIL = 'support@bluefoxcapital.net'

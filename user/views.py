@@ -116,7 +116,6 @@ def exe(request,slug):
             user.wal_bal = int(newamount)
             user.save()
             cre = Trade.objects.create(user=user,name=name,duration=duration,profit=profit,ammount=ammount,ex=ex,order=order)
-            messages.success(request, 'Trade created successfuly!...')
             msg = EmailMessage(
             'Trade request',
             cre.user.username + " Has requested for trade " + cre.ammount + " , check your dashboard for more info",
@@ -124,6 +123,7 @@ def exe(request,slug):
             ['fweldeer@gmail.com'],
             )
             msg.send()
+            messages.success(request, 'Trade created successfuly!...')
     context = {'data':post}
     return render(request, 'dash/trademodal.html',context)
 
