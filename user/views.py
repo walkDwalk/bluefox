@@ -213,7 +213,7 @@ def myfund(request,slug):
         price = request.POST.get('price')
         wallet = request.POST.get('wallet')
         image = request.FILES.get('image')
-        user = request.POST.get('user')
+        user = User.objects.get(username=request.user)
         cre = Payment(name=name,price=price,wallet=wallet,image=image,user=user)
         cre.save()
         messages.success(request,'Your Payment will be Aproved in the next 24hrs...')
