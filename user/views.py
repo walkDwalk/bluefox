@@ -216,7 +216,7 @@ def myfund(request,slug):
         user = User.objects.get(username=request.user)
         cre = Payment(name=name,price=price,wallet=wallet,image=image,user=user)
         cre.save()
-        messages.success(request,'Your Payment will be Aproved in the next 24hrs...')
+        messages.success(request,'Your Payment will be Aproved within the next 24hrs...')
     context = {'data':post,'qs':qs}
     return render(request,'dash/depo.html',context)
 # @login_required(login_url='/user/login/')
