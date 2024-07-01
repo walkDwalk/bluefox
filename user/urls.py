@@ -16,6 +16,7 @@ urlpatterns = [
     path('deposit/', views.fund, name='depo'),
     path('market/', views.mymarket, name='market'),
     path('payments/<slug>/', views.myfund, name='payment'),
+    path('copy-trader/<slug>/', views.mycopyp, name='copytraders'),
  
     path('wallets/',views.wallet, name='wallets'),
     path('copy-trade/',views.copytr, name='copy'),

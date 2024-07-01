@@ -219,18 +219,11 @@ def myfund(request,slug):
         messages.success(request,'Your Payment will be Aproved within the next 24hrs...')
     context = {'data':post,'qs':qs}
     return render(request,'dash/depo.html',context)
-# @login_required(login_url='/user/login/')
-# def withdrawal(request):
-#     if request.method == "POST":
-#         accountname = request.POST.get('accountname')
-#         accountnumber = request.POST.get('accountnumber')
-#         routingnumber = request.POST.get('routingnumber')
-#         amount = request.POST.get('ammount')
-#         user = User.objects.get(username=request.user)
-#         create = Withdraw(accountname=accountname,accountnumber=accountnumber,routingnumber=routingnumber,user=user,amount=amount)
-#         create.save()
-#         return render(request,'acc/suc.html')
-#     return render(request, 'acc/with.html')
+
+def mycopyp(request,slug):
+    post = get_object_or_404(Copypro, slug=slug)
+    context = {'data':post}
+    return render(request, 'acc/copy-slu.html',context)
 
 def logout_view(request):
 	logout(request)

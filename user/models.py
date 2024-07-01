@@ -166,6 +166,11 @@ class Copypro(models.Model):
     copiers = models.CharField(default='0',max_length=20)
     image = models.ImageField(default='pro.jpg')
     join = models.DateTimeField(auto_now_add=False,blank=True)
+    slug = models.SlugField(blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.fullname)
+        super(Copypro, self).save(*args, **kwargs)
     
 
     def __str__ (self):
